@@ -1,12 +1,16 @@
-import { NgModule, isDevMode } from '@angular/core';
+import { NgModule, isDevMode, importProvidersFrom } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import { provideRouter } from '@angular/router';
+import { registerLocaleData } from '@angular/common';
+import en from '@angular/common/locales/en';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { provideHttpClient } from '@angular/common/http';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { FormComponent } from './components/form/form.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { AppComponent } from './app.component';
+import { AppRoutingModule, routes } from './app-routing.module';
+
+registerLocaleData(en);
 
 @NgModule({
   declarations: [AppComponent, FormComponent],
@@ -17,12 +21,14 @@ import { RouterModule } from '@angular/router';
     AppRoutingModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: !isDevMode(),
-      // Register the ServiceWorker as soon as the application is stable
-      // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000',
     }),
   ],
-  providers: [],
+  providers: [
+    provideRouter(routes),
+    importProvidersFrom(FormsModule),
+    provideHttpClient(),
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
