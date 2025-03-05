@@ -4,7 +4,10 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "start:prod": "npm run build:prod && npm run serve:prod",
     "build": "ng build",
+    "build:prod": "ng build --configuration=production",
+    "serve:prod": "npx http-server -p 8080 -c-1 dist/pwa-table-sandbox",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
