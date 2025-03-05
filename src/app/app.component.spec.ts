@@ -16,10 +16,10 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'pwa-table-sandbox'`, () => {
+  it(`should have as title 'pwa-table-sandbox-15'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('pwa-table-sandbox');
+    expect(app.title).toEqual('pwa-table-sandbox-15');
   });
 
   it('should render title', () => {
@@ -27,7 +27,7 @@ describe('AppComponent', () => {
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
     expect(compiled.querySelector('.content span')?.textContent).toContain(
-      'pwa-table-sandbox app is running!'
+      'pwa-table-sandbox-15 app is running!'
     );
   });
 });
